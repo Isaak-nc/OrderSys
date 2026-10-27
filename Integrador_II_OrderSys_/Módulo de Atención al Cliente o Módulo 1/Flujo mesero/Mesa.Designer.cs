@@ -40,8 +40,9 @@
             this.lstComanda = new System.Windows.Forms.ListBox();
             this.txtTotal = new System.Windows.Forms.Label();
             this.pnlFondo = new System.Windows.Forms.Panel();
-            this.btnFacturar = new System.Windows.Forms.Button();
             this.btnSendCocina = new System.Windows.Forms.Button();
+            this.btnFacturar = new System.Windows.Forms.Button();
+            this.btnVerEstado = new System.Windows.Forms.Button();
             this.pnlSelecProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxOrderSys)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuDownCantidad)).BeginInit();
@@ -75,6 +76,7 @@
             this.pnlSelecProductos.Name = "pnlSelecProductos";
             this.pnlSelecProductos.Size = new System.Drawing.Size(1282, 321);
             this.pnlSelecProductos.TabIndex = 1;
+            this.pnlSelecProductos.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlSelecProductos_Paint);
             // 
             // txtOrderSys
             // 
@@ -178,6 +180,7 @@
             // pnlFondo
             // 
             this.pnlFondo.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pnlFondo.Controls.Add(this.btnVerEstado);
             this.pnlFondo.Controls.Add(this.btnSendCocina);
             this.pnlFondo.Controls.Add(this.btnFacturar);
             this.pnlFondo.Controls.Add(this.lstComanda);
@@ -186,6 +189,17 @@
             this.pnlFondo.Name = "pnlFondo";
             this.pnlFondo.Size = new System.Drawing.Size(1229, 408);
             this.pnlFondo.TabIndex = 4;
+            // 
+            // btnSendCocina
+            // 
+            this.btnSendCocina.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendCocina.Location = new System.Drawing.Point(261, 301);
+            this.btnSendCocina.Name = "btnSendCocina";
+            this.btnSendCocina.Size = new System.Drawing.Size(261, 51);
+            this.btnSendCocina.TabIndex = 5;
+            this.btnSendCocina.Text = "Enviar a cocina";
+            this.btnSendCocina.UseVisualStyleBackColor = true;
+            this.btnSendCocina.Click += new System.EventHandler(this.btnSendCocina_Click);
             // 
             // btnFacturar
             // 
@@ -199,16 +213,16 @@
             this.btnFacturar.UseVisualStyleBackColor = true;
             this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
             // 
-            // btnSendCocina
+            // btnVerEstado
             // 
-            this.btnSendCocina.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendCocina.Location = new System.Drawing.Point(427, 301);
-            this.btnSendCocina.Name = "btnSendCocina";
-            this.btnSendCocina.Size = new System.Drawing.Size(261, 51);
-            this.btnSendCocina.TabIndex = 5;
-            this.btnSendCocina.Text = "Enviar a cocina";
-            this.btnSendCocina.UseVisualStyleBackColor = true;
-            this.btnSendCocina.Click += new System.EventHandler(this.btnSendCocina_Click);
+            this.btnVerEstado.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerEstado.Location = new System.Drawing.Point(658, 301);
+            this.btnVerEstado.Name = "btnVerEstado";
+            this.btnVerEstado.Size = new System.Drawing.Size(192, 51);
+            this.btnVerEstado.TabIndex = 6;
+            this.btnVerEstado.Text = "Ver estado";
+            this.btnVerEstado.UseVisualStyleBackColor = true;
+            this.btnVerEstado.Click += new System.EventHandler(this.btnVerEstado_Click);
             // 
             // Mesa
             // 
@@ -245,5 +259,6 @@
         private System.Windows.Forms.Button btnFacturar;
         private System.Windows.Forms.Label txtOrderSys;
         private System.Windows.Forms.Button btnSendCocina;
+        private System.Windows.Forms.Button btnVerEstado;
     }
 }

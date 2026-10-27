@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Integrador_II_OrderSys_.Módulo_de_Atención_al_Cliente_o_Módulo_1.Flujo_cocina;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace Integrador_II_OrderSys_
 {
@@ -53,13 +54,13 @@ namespace Integrador_II_OrderSys_
                        this.Hide();
                        break;
                     }
-                    /*case "cocina":
-                    {
-                       Cocina pantallaCocina = new Cocina(usuario, this);
-                       pantallaCocina.Show();
-                       this.Hide();
-                       break;
-                        }*/
+                    case "cocina":
+                        {
+                            Cocina pantallaCocina = new Cocina(usuario, this);
+                            pantallaCocina.Show();
+                            this.Hide();
+                            break;
+                        }
                     case "admin":
                     {
                        MessageBox.Show("La pantalla de admin está en construcción.");
@@ -79,7 +80,6 @@ namespace Integrador_II_OrderSys_
             catch (IOException ex)
             {
                 MessageBox.Show($"No se pudo leer el archivo de usuarios: {ex.Message}");
-
             }
         }
     }

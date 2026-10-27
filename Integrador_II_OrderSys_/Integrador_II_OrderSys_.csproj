@@ -49,6 +49,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Archivos.cs" />
+    <Compile Include="Facturas.cs" />
+    <Compile Include="Inventario.cs" />
+    <Compile Include="LineaFactura.cs" />
+    <Compile Include="Mesa_diseño.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mesa_diseño.Designer.cs">
+      <DependentUpon>Mesa_diseño.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Módulo de Administración o Módulo 2\Flujo Admin\Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Módulo de Administración o Módulo 2\Flujo Admin\Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pedidos.cs" />
+    <Compile Include="Módulo de Atención al Cliente o Módulo 1\Flujo cocina\Cocina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Módulo de Atención al Cliente o Módulo 1\Flujo cocina\Cocina.Designer.cs">
+      <DependentUpon>Cocina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Módulo de Atención al Cliente o Módulo 1\Flujo mesero\Facturación.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +98,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users.cs" />
+    <EmbeddedResource Include="Mesa_diseño.resx">
+      <DependentUpon>Mesa_diseño.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Módulo de Administración o Módulo 2\Flujo Admin\Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Módulo de Atención al Cliente o Módulo 1\Flujo cocina\Cocina.resx">
+      <DependentUpon>Cocina.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Módulo de Atención al Cliente o Módulo 1\Flujo mesero\Facturación.resx">
       <DependentUpon>Facturación.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,9 +145,6 @@
   <ItemGroup>
     <None Include="Resources\Group.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Módulo de Administración o Módulo 2\Flujo Admin\" />
-    <Folder Include="Módulo de Atención al Cliente o Módulo 1\Flujo cocina\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

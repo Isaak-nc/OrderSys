@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Integrador_II_OrderSys_.Flujo_mesero;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,8 @@ namespace Integrador_II_OrderSys_
         private MenuMesas menuPadre;
         private decimal total = 0;
         private List<string> pendientesCocina = new List<string>();
+        private List<LineaFactura> lineas = new List<LineaFactura>();
+        private string nombreCliente = "Consumidor final"; // luego lo cambiará el form del cliente
 
         private Dictionary<string, decimal> precios = new Dictionary<string, decimal>
         {
@@ -77,14 +80,27 @@ namespace Integrador_II_OrderSys_
 
             string hora = DateTime.Now.ToString("HH:mm");
             pendientesCocina.Add($"{numeroMesa}|{usuarioActivo}|{hora}|{producto}|{cantidad}|Pendiente");
+
+            lineas.Add(new LineaFactura
+            {
+                Codigo = "P" + (cmbProductos.SelectedIndex + 1).ToString("00"),
+                Descripcion = producto,
+                Cantidad = cantidad,
+                Precio = precios[producto]
+            });
+        }
+        public void LimpiarComanda()
+        {
+            lstComanda.Items.Clear();
+            lineas.Clear();
+            total = 0;
+            txtTotal.Text = $"Total: {total:C}";
         }
 
         private void btnBackMenu_Click(object sender, EventArgs e)
         {
-            MenuMesas menuMesas = new MenuMesas(usuarioActivo);
-            MenuMesas pantallaMenuMesas = menuMesas;
-            pantallaMenuMesas.Show();
-            this.Hide();
+            menuPadre.Show();
+            this.Close();
 
         }
 
@@ -95,41 +111,9 @@ namespace Integrador_II_OrderSys_
                 MessageBox.Show("No hay productos en la comanda para facturar.");
                 return;
             }
-            string factura = $"Factura - M3wq {numeroMesa}\n";
-            factura += $"Atiende: {usuarioActivo}\n\n";
-            factura += "------------------------\n";
 
-            foreach (var item in lstComanda.Items)
-            {
-                factura += item + "\n";
-            }
-            factura += "------------------------\n";
-            factura += $"Total: {total:C}\n";
-
-            try
-            { 
-                string carpeta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Facturas");
-                Directory.CreateDirectory(carpeta);
-
-                string ruta = Path.Combine(carpeta, "facturas.txt");
-
-                string registro = $"[{DateTime.Now:dd/MM/yyyy HH:mm}]\n{factura}\n==========\n\n";
-                File.AppendAllText(ruta, registro);
-
-                MessageBox.Show("Factura generada y guardada correctamente.");
-
-                lstComanda.Items.Clear();
-                total = 0;
-                txtTotal.Text = $"Total: {total:C}";
-            }
-            catch (UnauthorizedAccessException)
-            {
-                MessageBox.Show($"Error al generar la factura.");
-            }
-            catch (IOException ex)
-            {
-                MessageBox.Show($"Error inesperado: {ex.Message}");
-            }
+            new Facturación(this, numeroMesa, usuarioActivo, nombreCliente, lineas, total).Show();
+            this.Hide();
         }
 
         private void lstComanda_SelectedIndexChanged(object sender, EventArgs e)
@@ -165,6 +149,27 @@ namespace Integrador_II_OrderSys_
             {
                 MessageBox.Show($"Error al enviar a cocina: {ex.Message}");
             }
+        }
+
+        private void pnlSelecProductos_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnVerEstado_Click(object sender, EventArgs e)
+        {
+            var mios = Pedidos.Leer()
+                .Where(p => p[0] == numeroMesa.ToString())
+                .ToList();
+
+            if (mios.Count == 0)
+            {
+                MessageBox.Show("Esta mesa no tiene pedidos enviados a cocina.");
+                return;
+            }
+
+            string texto = string.Join("\n", mios.Select(p => $"{p[4]} x {p[3]}  -  {p[5]}"));
+            MessageBox.Show(texto, $"Estado - Mesa {numeroMesa}");
         }
     }
 }
