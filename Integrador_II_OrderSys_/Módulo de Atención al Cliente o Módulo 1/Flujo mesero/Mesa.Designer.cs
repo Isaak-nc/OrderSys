@@ -40,9 +40,9 @@
             this.lstComanda = new System.Windows.Forms.ListBox();
             this.txtTotal = new System.Windows.Forms.Label();
             this.pnlFondo = new System.Windows.Forms.Panel();
+            this.btnVerEstado = new System.Windows.Forms.Button();
             this.btnSendCocina = new System.Windows.Forms.Button();
             this.btnFacturar = new System.Windows.Forms.Button();
-            this.btnVerEstado = new System.Windows.Forms.Button();
             this.pnlSelecProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxOrderSys)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nuDownCantidad)).BeginInit();
@@ -190,10 +190,21 @@
             this.pnlFondo.Size = new System.Drawing.Size(1229, 408);
             this.pnlFondo.TabIndex = 4;
             // 
+            // btnVerEstado
+            // 
+            this.btnVerEstado.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerEstado.Location = new System.Drawing.Point(714, 301);
+            this.btnVerEstado.Name = "btnVerEstado";
+            this.btnVerEstado.Size = new System.Drawing.Size(192, 51);
+            this.btnVerEstado.TabIndex = 6;
+            this.btnVerEstado.Text = "Ver estado";
+            this.btnVerEstado.UseVisualStyleBackColor = true;
+            this.btnVerEstado.Click += new System.EventHandler(this.btnVerEstado_Click);
+            // 
             // btnSendCocina
             // 
             this.btnSendCocina.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendCocina.Location = new System.Drawing.Point(261, 301);
+            this.btnSendCocina.Location = new System.Drawing.Point(407, 301);
             this.btnSendCocina.Name = "btnSendCocina";
             this.btnSendCocina.Size = new System.Drawing.Size(261, 51);
             this.btnSendCocina.TabIndex = 5;
@@ -212,17 +223,6 @@
             this.btnFacturar.Text = "Generar Factura";
             this.btnFacturar.UseVisualStyleBackColor = true;
             this.btnFacturar.Click += new System.EventHandler(this.btnFacturar_Click);
-            // 
-            // btnVerEstado
-            // 
-            this.btnVerEstado.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerEstado.Location = new System.Drawing.Point(658, 301);
-            this.btnVerEstado.Name = "btnVerEstado";
-            this.btnVerEstado.Size = new System.Drawing.Size(192, 51);
-            this.btnVerEstado.TabIndex = 6;
-            this.btnVerEstado.Text = "Ver estado";
-            this.btnVerEstado.UseVisualStyleBackColor = true;
-            this.btnVerEstado.Click += new System.EventHandler(this.btnVerEstado_Click);
             // 
             // Mesa
             // 

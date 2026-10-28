@@ -6,11 +6,9 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Integrador_II_OrderSys_
 {
@@ -24,15 +22,7 @@ namespace Integrador_II_OrderSys_
         private List<LineaFactura> lineas = new List<LineaFactura>();
         private string nombreCliente = "Consumidor final"; // luego lo cambiará el form del cliente
 
-        private Dictionary<string, decimal> precios = new Dictionary<string, decimal>
-        {
-
-            { "Pizza de queso", 450.0m },
-            { "Pizza hawaiana", 500.0m },
-            { "Pizza de pepperoni", 400.0m },
-            { "Chilaquiles", 350.0m },
-            { "Tacos mexicanos", 250.0m },
-        };
+        private Dictionary<string, ItemInventario> catalogo;
 
         public Mesa(int numero, string usuario, MenuMesas menu)
         {
@@ -45,10 +35,8 @@ namespace Integrador_II_OrderSys_
             txtTituloMesa.Text = $"Mesa {numeroMesa}";
 
             cmbProductos.DropDownStyle = ComboBoxStyle.DropDownList;
-            foreach (string producto in precios.Keys)
-            {
-                cmbProductos.Items.Add(producto);
-            }
+            catalogo = Inventario.Leer().ToDictionary(i => i.Descripcion);
+            foreach (string desc in catalogo.Keys) cmbProductos.Items.Add(desc);
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -71,27 +59,32 @@ namespace Integrador_II_OrderSys_
 
             string producto = (string)cmbProductos.SelectedItem;
             int cantidad = (int)nuDownCantidad.Value;
-            decimal subtotal = precios[producto] * cantidad;
+            ItemInventario item = catalogo[producto];
 
-            lstComanda.Items.Add($"{cantidad} x {producto} = {subtotal:C}");
+            int yaEnComanda = lineas.Where(l => l.Codigo == item.Codigo).Sum(l => l.Cantidad);
+            if (cantidad + yaEnComanda > item.Stock)
+            {
+                MessageBox.Show($"Stock insuficiente. Disponibles: {item.Stock - yaEnComanda}.");
+                return;
+            }
+
+            decimal subtotal = item.Precio * cantidad;
+            lineas.Add(new LineaFactura { Codigo = item.Codigo, Descripcion = item.Descripcion, Cantidad = cantidad, Precio = item.Precio });
 
             total += subtotal;
+            lstComanda.Items.Add($"{cantidad} x {item.Descripcion}  -  {subtotal:C}");
             txtTotal.Text = $"Total: {total:C}";
 
-            string hora = DateTime.Now.ToString("HH:mm");
-            pendientesCocina.Add($"{numeroMesa}|{usuarioActivo}|{hora}|{producto}|{cantidad}|Pendiente");
+            // mesa|usuario|hora|producto|cantidad|estado
+            pendientesCocina.Add(string.Join("|", numeroMesa, usuarioActivo,
+                DateTime.Now.ToString("HH:mm:ss"), item.Descripcion, cantidad, "Pendiente"));
 
-            lineas.Add(new LineaFactura
-            {
-                Codigo = "P" + (cmbProductos.SelectedIndex + 1).ToString("00"),
-                Descripcion = producto,
-                Cantidad = cantidad,
-                Precio = precios[producto]
-            });
+            nuDownCantidad.Value = 1;
         }
         public void LimpiarComanda()
         {
             lstComanda.Items.Clear();
+            pendientesCocina.Clear();
             lineas.Clear();
             total = 0;
             txtTotal.Text = $"Total: {total:C}";

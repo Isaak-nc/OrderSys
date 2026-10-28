@@ -171,7 +171,6 @@
             // 
             // btnBackMenu
             // 
-            this.btnBackMenu.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnBackMenu.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBackMenu.Location = new System.Drawing.Point(12, 24);
             this.btnBackMenu.Name = "btnBackMenu";

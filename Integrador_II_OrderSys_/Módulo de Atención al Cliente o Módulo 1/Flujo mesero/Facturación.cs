@@ -100,6 +100,8 @@ namespace Integrador_II_OrderSys_.Flujo_mesero
 
                 File.AppendAllText(Archivos.RutaFacturas, registro + Environment.NewLine);
 
+                Inventario.Descontar(lineas);
+
                 var restantes = Pedidos.Leer()
                     .Where(p => !(p[0] == numeroMesa.ToString() && p[5] == "Listo"))
                     .ToList();
@@ -128,7 +130,17 @@ namespace Integrador_II_OrderSys_.Flujo_mesero
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-            // Evento de pintura del panel (vacío)
+            
+        }
+
+        private void btnConfirmar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConfirmar_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

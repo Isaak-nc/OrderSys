@@ -63,6 +63,7 @@
             this.txtBoxContraseña.Name = "txtBoxContraseña";
             this.txtBoxContraseña.Size = new System.Drawing.Size(250, 35);
             this.txtBoxContraseña.TabIndex = 2;
+            this.txtBoxContraseña.UseSystemPasswordChar = true;
             // 
             // txtUsuario
             // 
@@ -89,7 +90,7 @@
             this.btnLogin.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.Location = new System.Drawing.Point(385, 516);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(145, 61);
+            this.btnLogin.Size = new System.Drawing.Size(174, 61);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Acceder";
             this.btnLogin.UseVisualStyleBackColor = true;

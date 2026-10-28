@@ -23,6 +23,8 @@ namespace Integrador_II_OrderSys_.Módulo_de_Atención_al_Cliente_o_Módulo_1.Fl
             loginPadre = login;
             this.Text = $"Cocina - {usuarioActivo}";
             CargarPedidos();
+
+            this.FormClosed += (s, e) => loginPadre.Show();
         }
 
         private void CargarPedidos()
@@ -63,9 +65,9 @@ namespace Integrador_II_OrderSys_.Módulo_de_Atención_al_Cliente_o_Módulo_1.Fl
             CargarPedidos();
         }
         private void btnPreparar_Click(object sender, EventArgs e) => CambiarEstado("En preparación");
-        private void btnListo_Click(object sender, EventArgs e) => CambiarEstado("Listo");
-        private void btnActualizar_Click(object sender, EventArgs e) => CargarPedidos();
-        private void timer1_Tick(object sender, EventArgs e) => CargarPedidos();
+        private void btnListo_Click_1(object sender, EventArgs e) => CambiarEstado("Listo");
+        private void btnActualizar_Click_1(object sender, EventArgs e) => CargarPedidos();
+        private void btnSalir_Click_1(object sender, EventArgs e) => this.Close();
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
@@ -78,20 +80,6 @@ namespace Integrador_II_OrderSys_.Módulo_de_Atención_al_Cliente_o_Módulo_1.Fl
             
         }
 
-        private void btnActualizar_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnListo_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSalir_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 
 }

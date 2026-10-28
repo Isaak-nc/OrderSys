@@ -38,12 +38,13 @@
             this.txtCliente = new System.Windows.Forms.Label();
             this.btnBackMenu = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtCodigoFactura = new System.Windows.Forms.Label();
-            this.txtFecha = new System.Windows.Forms.Label();
+            this.txtTotal = new System.Windows.Forms.Label();
+            this.txtEstadoFactura = new System.Windows.Forms.Label();
             this.cmbFormatoPago = new System.Windows.Forms.ComboBox();
             this.txtPago = new System.Windows.Forms.Label();
-            this.txtEstadoFactura = new System.Windows.Forms.Label();
-            this.txtTotal = new System.Windows.Forms.Label();
+            this.txtFecha = new System.Windows.Forms.Label();
+            this.txtCodigoFactura = new System.Windows.Forms.Label();
+            this.btnConfirmar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,9 +57,9 @@
             this.columnHeader4});
             this.lvFactura.FullRowSelect = true;
             this.lvFactura.HideSelection = false;
-            this.lvFactura.Location = new System.Drawing.Point(29, 387);
+            this.lvFactura.Location = new System.Drawing.Point(44, 387);
             this.lvFactura.Name = "lvFactura";
-            this.lvFactura.Size = new System.Drawing.Size(998, 320);
+            this.lvFactura.Size = new System.Drawing.Size(1010, 320);
             this.lvFactura.TabIndex = 0;
             this.lvFactura.UseCompatibleStateImageBehavior = false;
             this.lvFactura.View = System.Windows.Forms.View.Details;
@@ -118,6 +119,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel1.Controls.Add(this.btnConfirmar);
             this.panel1.Controls.Add(this.txtTotal);
             this.panel1.Controls.Add(this.txtEstadoFactura);
             this.panel1.Controls.Add(this.cmbFormatoPago);
@@ -127,40 +129,37 @@
             this.panel1.Controls.Add(this.btnBackMenu);
             this.panel1.Controls.Add(this.txtFactura);
             this.panel1.Controls.Add(this.txtCliente);
-            this.panel1.Location = new System.Drawing.Point(29, 32);
+            this.panel1.Location = new System.Drawing.Point(44, 32);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(997, 305);
+            this.panel1.Size = new System.Drawing.Size(1010, 332);
             this.panel1.TabIndex = 13;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // txtCodigoFactura
+            // txtTotal
             // 
-            this.txtCodigoFactura.AutoSize = true;
-            this.txtCodigoFactura.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtCodigoFactura.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodigoFactura.Location = new System.Drawing.Point(745, 76);
-            this.txtCodigoFactura.Name = "txtCodigoFactura";
-            this.txtCodigoFactura.Size = new System.Drawing.Size(227, 34);
-            this.txtCodigoFactura.TabIndex = 13;
-            this.txtCodigoFactura.Text = "Código de factura";
+            this.txtTotal.AutoSize = true;
+            this.txtTotal.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtTotal.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotal.Location = new System.Drawing.Point(721, 126);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.Size = new System.Drawing.Size(79, 35);
+            this.txtTotal.TabIndex = 17;
+            this.txtTotal.Text = "Total";
             // 
-            // txtFecha
+            // txtEstadoFactura
             // 
-            this.txtFecha.AutoSize = true;
-            this.txtFecha.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtFecha.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFecha.Location = new System.Drawing.Point(827, 20);
-            this.txtFecha.Name = "txtFecha";
-            this.txtFecha.Size = new System.Drawing.Size(86, 34);
-            this.txtFecha.TabIndex = 14;
-            this.txtFecha.Text = "Fecha";
+            this.txtEstadoFactura.AutoSize = true;
+            this.txtEstadoFactura.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtEstadoFactura.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEstadoFactura.Location = new System.Drawing.Point(262, 26);
+            this.txtEstadoFactura.Name = "txtEstadoFactura";
+            this.txtEstadoFactura.Size = new System.Drawing.Size(184, 34);
+            this.txtEstadoFactura.TabIndex = 16;
+            this.txtEstadoFactura.Text = "EstadoFactura";
             // 
             // cmbFormatoPago
             // 
             this.cmbFormatoPago.FormattingEnabled = true;
-            this.cmbFormatoPago.Items.AddRange(new object[] {
-            "Efectivo",
-            "Tarjeta de débito/crédito"});
             this.cmbFormatoPago.Location = new System.Drawing.Point(324, 204);
             this.cmbFormatoPago.Name = "cmbFormatoPago";
             this.cmbFormatoPago.Size = new System.Drawing.Size(224, 37);
@@ -176,33 +175,44 @@
             this.txtPago.TabIndex = 15;
             this.txtPago.Text = "Formato de pago:";
             // 
-            // txtEstadoFactura
+            // txtFecha
             // 
-            this.txtEstadoFactura.AutoSize = true;
-            this.txtEstadoFactura.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtEstadoFactura.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstadoFactura.Location = new System.Drawing.Point(788, 143);
-            this.txtEstadoFactura.Name = "txtEstadoFactura";
-            this.txtEstadoFactura.Size = new System.Drawing.Size(184, 34);
-            this.txtEstadoFactura.TabIndex = 16;
-            this.txtEstadoFactura.Text = "EstadoFactura";
+            this.txtFecha.AutoSize = true;
+            this.txtFecha.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtFecha.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFecha.Location = new System.Drawing.Point(754, 26);
+            this.txtFecha.Name = "txtFecha";
+            this.txtFecha.Size = new System.Drawing.Size(86, 34);
+            this.txtFecha.TabIndex = 14;
+            this.txtFecha.Text = "Fecha";
             // 
-            // txtTotal
+            // txtCodigoFactura
             // 
-            this.txtTotal.AutoSize = true;
-            this.txtTotal.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.txtTotal.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotal.Location = new System.Drawing.Point(788, 222);
-            this.txtTotal.Name = "txtTotal";
-            this.txtTotal.Size = new System.Drawing.Size(201, 35);
-            this.txtTotal.TabIndex = 17;
-            this.txtTotal.Text = "EstadoFactura";
+            this.txtCodigoFactura.AutoSize = true;
+            this.txtCodigoFactura.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.txtCodigoFactura.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCodigoFactura.Location = new System.Drawing.Point(486, 26);
+            this.txtCodigoFactura.Name = "txtCodigoFactura";
+            this.txtCodigoFactura.Size = new System.Drawing.Size(227, 34);
+            this.txtCodigoFactura.TabIndex = 13;
+            this.txtCodigoFactura.Text = "Código de factura";
+            // 
+            // btnConfirmar
+            // 
+            this.btnConfirmar.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmar.Location = new System.Drawing.Point(660, 235);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(253, 48);
+            this.btnConfirmar.TabIndex = 19;
+            this.btnConfirmar.Text = "Confirmar Pago";
+            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click_1);
             // 
             // Facturación
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 719);
+            this.ClientSize = new System.Drawing.Size(1094, 752);
             this.Controls.Add(this.lvFactura);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -231,5 +241,6 @@
         private System.Windows.Forms.Label txtPago;
         private System.Windows.Forms.Label txtEstadoFactura;
         private System.Windows.Forms.Label txtTotal;
+        private System.Windows.Forms.Button btnConfirmar;
     }
 }

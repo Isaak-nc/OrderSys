@@ -1,4 +1,5 @@
-﻿using Integrador_II_OrderSys_.Módulo_de_Atención_al_Cliente_o_Módulo_1.Flujo_cocina;
+﻿using Integrador_II_OrderSys_.Módulo_de_Administración_o_Módulo_2.Flujo_Admin;
+using Integrador_II_OrderSys_.Módulo_de_Atención_al_Cliente_o_Módulo_1.Flujo_cocina;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,15 +26,13 @@ namespace Integrador_II_OrderSys_
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-           string usuario = txtBoxUsuario.Text.Trim();
-           string contraseña = txtBoxContraseña.Text;
+            string usuario = txtBoxUsuario.Text.Trim();
+            string contraseña = txtBoxContraseña.Text;
 
             try
             {
                 if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña))
-                {
                     throw new ArgumentException("Debes llenar usuario y contraseña.");
-                }
 
                 string rol = Users.ValidarLogin(usuario, contraseña);
 
@@ -43,35 +42,21 @@ namespace Integrador_II_OrderSys_
                     return;
                 }
 
-                txtBoxContraseña.Clear();
-
+                Form pantalla;
                 switch (rol)
                 {
-                    case "mesero":
-                    {
-                       MenuMesas menu = new MenuMesas(usuario);
-                       menu.Show();
-                       this.Hide();
-                       break;
-                    }
-                    case "cocina":
-                        {
-                            Cocina pantallaCocina = new Cocina(usuario, this);
-                            pantallaCocina.Show();
-                            this.Hide();
-                            break;
-                        }
-                    case "admin":
-                    {
-                       MessageBox.Show("La pantalla de admin está en construcción.");
-                       break;
-                    }
+                    case "mesero": pantalla = new MenuMesas(usuario, this); break;
+                    case "cocina": pantalla = new Cocina(usuario, this); break;
+                    case "admin": pantalla = new Admin(usuario, this); break;
                     default:
-                    {
                         MessageBox.Show($"Rol desconocido en usuarios.txt: {rol}");
-                        break;
-                    }
+                        return;
                 }
+
+                txtBoxUsuario.Clear();
+                txtBoxContraseña.Clear();
+                pantalla.Show();
+                this.Hide();
             }
             catch (ArgumentException ex)
             {

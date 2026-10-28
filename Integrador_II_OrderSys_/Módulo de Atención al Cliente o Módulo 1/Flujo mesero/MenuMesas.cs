@@ -12,13 +12,15 @@ namespace Integrador_II_OrderSys_
 {
     public partial class MenuMesas : Form
     {
-        private string UsuarioActivo;
+        private string UsuarioActivo; private Form loginPadre;
 
-        public MenuMesas(string usuario)
+        public MenuMesas(string usuario, Form login)
         {
             InitializeComponent();
             UsuarioActivo = usuario;
+            loginPadre = login;
             this.Text = $"Menú - Usuario: {UsuarioActivo}";
+            this.FormClosed += (s, e) => loginPadre.Show();
         }
 
         private void Menu3_Load(object sender, EventArgs e)
@@ -29,22 +31,11 @@ namespace Integrador_II_OrderSys_
         private void btnBackMenu_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show(
-            "¿Seguro que quiere salir, " + UsuarioActivo + "?",
-            "Confirmación",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question
-            );
+                "¿Seguro que quiere salir, " + UsuarioActivo + "?",
+                "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (resultado == DialogResult.Yes)
-            {
-                Login pantallaForm1 = new Login();
-                pantallaForm1.Show();
-                this.Close(); 
-            }
-            else
-            {
-              
-            }
+                this.Close();   // el FormClosed vuelve a mostrar el login
         }
 
         private void btnMesaClick(object sender, EventArgs e)
