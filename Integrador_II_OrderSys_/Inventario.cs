@@ -25,7 +25,11 @@ namespace Integrador_II_OrderSys_
                 "P02|Pizza hawaiana|500.00|20",
                 "P03|Pizza de pepperoni|400.00|20",
                 "P04|Chilaquiles|350.00|20",
-                "P05|Tacos mexicanos|250.00|20"
+                "P05|Tacos mexicanos|250.00|20",
+                "PO6|Coca Cola 3l°|100.00|20",
+                "PO7|Refresco de cacao|40.00|20",
+                "PO8|Agua|30.00|20",
+                "PO9|Café|50.00|20",
             });
         }
 
